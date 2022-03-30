@@ -4,6 +4,7 @@ import entity.TableRow
 
 import java.sql.Connection
 
+
 trait DataLoader {
 
   def createTable(connection: Connection, tableName:String):Unit

@@ -1,7 +1,7 @@
 package connection
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
-import java.util.{Objects, Properties}
+import java.util.Objects
 
 case object DB2ConnectorFromEnv{
   //todo: Validation and checking for misbehavior

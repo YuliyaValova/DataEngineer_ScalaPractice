@@ -1,6 +1,6 @@
 package entity
 
-class TableRow(var product_id:Int, var product_group:Byte, var year:Int, var monthly_purchases:List[Int]) {
+class TableRow(var product_id:Int, var product_group:Int, var year:Int, var monthly_purchases:Array[Int]) {
 
   def setProductId(id:Int): Unit ={
     this.product_id = id
@@ -14,7 +14,7 @@ class TableRow(var product_id:Int, var product_group:Byte, var year:Int, var mon
     this.year = year
   }
 
-  def setPurchases(purchases:List[Int]): Unit ={
+  def setPurchases(purchases:Array[Int]): Unit ={
     this.monthly_purchases = purchases
   }
 

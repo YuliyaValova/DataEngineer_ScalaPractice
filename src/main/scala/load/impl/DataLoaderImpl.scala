@@ -1,9 +1,11 @@
 package load.impl
 
 import entity.TableRow
+import generator.RecordsGenerator
+import generator.impl.RecordsGeneratorImpl
 import load.DataLoader
 
-import java.sql.{Connection, PreparedStatement}
+import java.sql.Connection
 import java.text.MessageFormat
 //todo checks for issues
 case class DataLoaderImpl() extends DataLoader{
