@@ -1,14 +1,18 @@
 package load.impl
 
+import entity.TableRow
 import load.DataLoader
 
 import java.sql.{Connection, PreparedStatement}
 import java.text.MessageFormat
-import scala.::
-
+//todo checks for issues
 case class DataLoaderImpl() extends DataLoader{
 
-  override def addTableRecord(product_id: Int, product_group: Byte, year: Int, monthly_purchases: List[Int]): Boolean = ???
+  override def addTableRecord(tableName:String, connection: Connection, row:TableRow): Boolean = {
+    val query = "insert into " + tableName + " values(" + row.toString + ");"
+    val statement = connection.createStatement()
+    statement.execute(query)
+  }
 
   override def createTable(connection: Connection, tableName: String): Unit = {
     val query = """
@@ -31,6 +35,14 @@ case class DataLoaderImpl() extends DataLoader{
                       |primary key (product_id, year)
                       |);
                     """.stripMargin
+    val preparedStatement = connection.createStatement()
+    preparedStatement.execute(MessageFormat.format(query, tableName))
+  }
+
+  override def dropTable(connection: Connection, tableName: String): Unit = {
+    val query =   """
+                  |drop table {0};
+                  """.stripMargin
     val preparedStatement = connection.createStatement()
     preparedStatement.execute(MessageFormat.format(query, tableName))
   }

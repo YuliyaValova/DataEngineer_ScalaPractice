@@ -18,4 +18,18 @@ class TableRow(var product_id:Int, var product_group:Byte, var year:Int, var mon
     this.monthly_purchases = purchases
   }
 
+
+  override def toString = product_id + "," + product_group + "," + year + "," +
+    monthly_purchases(0) + "," +
+    monthly_purchases(1) + "," +
+    monthly_purchases(2) + "," +
+    monthly_purchases(3) + "," +
+    monthly_purchases(4) + "," +
+    monthly_purchases(5) + "," +
+    monthly_purchases(6) + "," +
+    monthly_purchases(7) + "," +
+    monthly_purchases(8) + "," +
+    monthly_purchases(9) + "," +
+    monthly_purchases(10) + "," +
+    monthly_purchases(11)
 }
