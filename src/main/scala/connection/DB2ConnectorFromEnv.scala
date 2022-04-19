@@ -1,41 +1,58 @@
 package connection
 
-import java.sql.{Connection, DriverManager, PreparedStatement}
+import java.sql.{Connection, DriverManager}
 import java.util.Objects
 
-case object DB2ConnectorFromEnv{
-  //todo: Validation and checking for misbehavior
+case object DB2ConnectorFromEnv {
+
+  /**
+   * This class is used to work with connections to DB2 on Cloud. Properties for connection is loaded from
+   * app environment
+   */
   private val DRIVER = System.getenv("driver")
   private val URL = System.getenv("url")
   private val DATABASE_NAME = System.getenv("name")
   private val USERNAME = System.getenv("username")
   private val PASSWORD = System.getenv("password")
 
-  def prepareUrlForConnection(): String ={
+  /**
+   * Prepares url for connection with credentials
+   *
+   * @return String - prepared URL
+   */
+  def prepareUrlForConnection(): String = {
     URL + DATABASE_NAME + ":user=" + USERNAME + ";password=" + PASSWORD + ";sslConnection=true;"
   }
 
-  def getConnectionToDatabase(): Connection ={
-    val url = prepareUrlForConnection()
-    Class.forName(DRIVER)
-    DriverManager.getConnection(url)
+
+  /**
+   * Get connection to DB2 on Cloud
+   *
+   * @return Connection - working connection
+   */
+  def getConnectionToDatabase(): Connection = {
+    try {
+      val url = prepareUrlForConnection()
+      Class.forName(DRIVER)
+      DriverManager.getConnection(url)
+    } catch {
+      case e: Exception => {
+        println("ERROR: get connection to DB - failed!")
+        System.exit(1)
+        null
+      }
+    }
   }
 
-  def retrieveConnection(connection: Connection): Unit ={
-    if(Objects.nonNull(connection))
+  /**
+   * Closes connection
+   *
+   * @param connection to be closed
+   */
+  def retrieveConnection(connection: Connection): Unit = {
+    if (Objects.nonNull(connection))
       connection.close()
   }
 
-    def main(args: Array[String]): Unit = {
-        val connection = getConnectionToDatabase()
-        val preparedStatement: PreparedStatement = connection.prepareStatement("Select * from Employees;")
-        val resultSet = preparedStatement.executeQuery
-        while (resultSet.next) {
-          val name = resultSet.getString(1)
-          val age = resultSet.getLong(2)
-          println("Name: " + name + ", Age: " + age)
-        }
-        retrieveConnection(connection)
-    }
 }
 

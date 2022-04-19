@@ -1,11 +1,14 @@
 package connection
-import java.sql.DriverManager
-import java.sql.{Connection, PreparedStatement}
+
+import java.sql.{Connection, DriverManager}
 import java.util.{Objects, Properties}
 
-case object DB2Connector{
-  //todo: Validation and checking for misbehavior
+case object DB2Connector {
 
+  /**
+   * This class is used to work with connections to DB2 on Cloud. Properties for connection is loaded from
+   * resourses/db.properties
+   */
   private val DATABASE_CONFIG_PATH = "db.properties"
   private val DRIVER = "database.driver"
   private val URL = "database.url"
@@ -14,8 +17,17 @@ case object DB2Connector{
   private val PASSWORD = "database.password"
   private var properties: Properties = null
 
+  /**
+   * Get property by key
+   *
+   * @param key of the property
+   * @return String - value of the property
+   */
   private def getProperty(key: String) = properties.getProperty(key)
 
+  /**
+   * Load properties from resourses/db.properties
+   */
   private def loadProperties(): Unit = {
     val is = classOf[DB2Connector.type].getClassLoader.getResourceAsStream(DATABASE_CONFIG_PATH)
     properties = new Properties()
@@ -23,7 +35,12 @@ case object DB2Connector{
     is.close()
   }
 
-  def prepareUrlForConnection(): String ={
+  /**
+   * Prepares url for connection with credentials
+   *
+   * @return String - prepared URL
+   */
+  def prepareUrlForConnection(): String = {
     val url = getProperty(URL)
     val dbName = getProperty(DATABASE_NAME)
     val user = getProperty(USERNAME)
@@ -31,33 +48,45 @@ case object DB2Connector{
     url + dbName + ":user=" + user + ";password=" + password + ";sslConnection=true;"
   }
 
-  def getDriverName():String={
+  /**
+   * Get driver from property file
+   *
+   * @return String - Driver name
+   */
+  def getDriverName(): String = {
     properties.getProperty(DRIVER)
   }
 
-  def getConnectionToDatabase(): Connection ={
-    loadProperties()
-    val driver = getDriverName()
-    val url = prepareUrlForConnection()
-    Class.forName(driver)
-    DriverManager.getConnection(url)
+  /**
+   * Get connection to DB2 on Cloud
+   *
+   * @return Connection - working connection
+   */
+  def getConnectionToDatabase(): Connection = {
+    try {
+      loadProperties()
+      val driver = getDriverName()
+      val url = prepareUrlForConnection()
+      Class.forName(driver)
+      DriverManager.getConnection(url)
+    } catch {
+      case e:Exception => {
+        println("ERROR: get connection to DB - failed!")
+        System.exit(1)
+        null
+      }
+    }
   }
 
-  def retrieveConnection(connection: Connection): Unit ={
-    if(Objects.nonNull(connection))
+  /**
+   * Closes connection
+   *
+   * @param connection to be closed
+   */
+  def retrieveConnection(connection: Connection): Unit = {
+    if (Objects.nonNull(connection))
       connection.close()
   }
 
-    def main(args: Array[String]): Unit = {
-      val connection = getConnectionToDatabase()
-        val preparedStatement: PreparedStatement = connection.prepareStatement("Select * from Employees;")
-        val resultSet = preparedStatement.executeQuery
-        while (resultSet.next) {
-          val name = resultSet.getString(1)
-          val age = resultSet.getLong(2)
-          println("Name: " + name + ", Age: " + age)
-        }
-        retrieveConnection(connection)
-    }
 }
 

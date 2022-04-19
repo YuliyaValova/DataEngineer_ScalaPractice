@@ -7,7 +7,7 @@ import load.DataLoader
 
 import java.sql.Connection
 import java.text.MessageFormat
-//todo checks for issues
+
 case class DataLoaderImpl() extends DataLoader{
 
   override def addTableRecord(tableName:String, connection: Connection, row:TableRow): Boolean = {

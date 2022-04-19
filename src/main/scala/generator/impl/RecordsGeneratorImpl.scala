@@ -37,11 +37,6 @@ case class RecordsGeneratorImpl() extends RecordsGenerator {
     for (currentPosition <- 0 until count) {
       years(currentPosition) = allowedValues(currentPosition)
     }
-     /* var value = random.nextInt((2018 - 2015) + 1) + 2015
-      while(years.contains(value)){
-        value = random.nextInt((2018 - 2015) + 1) + 2015
-      }
-      years(currentPosition) = value //[2015;2018]*/
     years
   }
 
@@ -56,7 +51,14 @@ case class RecordsGeneratorImpl() extends RecordsGenerator {
 
   override def generateTable(tableName: String, connection: Connection, rowNumber: Int): Unit = {
     var currentRowNumber = 0
-    loader.createTable(connection, tableName)
+    try {
+      loader.createTable(connection, tableName)
+    } catch {
+      case e:Exception => {
+        println("ERROR: table cannot be created.")
+        System.exit(1)
+      }
+    }
     while (currentRowNumber < rowNumber){
       val recordsCount = generateCount()
       val productId = generateId()
@@ -68,15 +70,13 @@ case class RecordsGeneratorImpl() extends RecordsGenerator {
         productRows += new TableRow(productId,productGroup,years(currentYearPosition),generatePurchases())
         currentYearPosition+=1
       }
-      /*productRows.foreach(row => {
-        var currentYearPosition = 0
-        row.product_id = productId
-        row.product_group = productGroup
-        row.year = years(currentYearPosition)
-        currentYearPosition+=1
-        row.monthly_purchases = generatePurchases()
-      })*/
-      productRows.foreach(row => loader.addTableRecord(tableName, connection, row))
+      try {
+        productRows.foreach(row => loader.addTableRecord(tableName, connection, row))
+      } catch {
+        case e:Exception => {
+          println("ERROR: Error adding entry. Failed row number: " + currentRowNumber)
+        }
+      }
       currentRowNumber+=recordsCount
     }
   }
