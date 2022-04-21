@@ -29,22 +29,24 @@ Strongly recomended to use:
 ```sh
 sbt run <jdbc:db2://URL/DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
 ```
+<br>
 >URL - Url for connection to DB2 on Cloud. <br>
 >DATABASE_NAME - Name of the database. <br>
 >USER_NAME - Username from DB2 credentials. <br>
 >YOUR_PASSWORD - Password from DB2 credentials. <br>
 >TABLE_NAME - The name under which the generated table will be saved in the database. <br>
->NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table. <br>
-
-<b> Example: </b>
+>NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table.
 <br>
-Command with your custom number of genereted rows
+
+<b> Example </b>
+<br>
+Command with your custom number of genereted rows:
 ```sh
 sbt run jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 15000
 ```
 <b> or </b>
 <br>
-Command with default number of genereted rows
+Command with default number of genereted rows:
 ```sh
 sbt run jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 
 ```
