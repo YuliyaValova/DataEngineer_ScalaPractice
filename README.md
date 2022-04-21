@@ -1,5 +1,4 @@
 # DataEngineer_ScalaPractice
-## Functionality
 It is a Scala application that:
 - Connects to the DB2 instance on the cloud
 - Generates a table with specified number of sample records
@@ -48,30 +47,37 @@ Strongly recomended to use:
 | Scala | 2.13.8 |
 | Git | 2.33.0 |
 
-## How to run application
+## Build
 >All next steps you can do from <b>cmd</b> or <b>PowerShell</b>.
-1. Clone the current version of the repository to your computer.
+Clone the current version of the repository to your computer.
 ```sh
  git clone https://github.com/YuliyaValova/DataEngineer_ScalaPractice
 ```
-2. Go to the project folder.
-```sh
-cd DataEngineer_ScalaPractice
-```
-3. Write this command to start sbt.
+
+### Using sbt
+Go to the project folder and write this commands to start sbt, reload and package project into jar.
 ```sh
 sbt 
 ```
-4. Write: 
+```sh
+reload
+```
+```sh
+package
+```
+
+## Run
+### Using sbt
+Use this command in sbt-shell, opened in your project folder.
 ```sh
 run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
 ```
->URL - Url for connection to DB2 on Cloud. <br>
->DATABASE_NAME - Name of the database. <br>
->USER_NAME - Username from DB2 credentials. <br>
->YOUR_PASSWORD - Password from DB2 credentials. <br>
->TABLE_NAME - The name under which the generated table will be saved in the database. <br>
->NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table.
+- URL - Url for connection to DB2 on Cloud. <br>
+- DATABASE_NAME - Name of the database. <br>
+- USER_NAME - Username from DB2 credentials. <br>
+- YOUR_PASSWORD - Password from DB2 credentials. <br>
+- TABLE_NAME - The name under which the generated table will be saved in the database. <br>
+- NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table.
 <br>
 
 <b> Example </b>
