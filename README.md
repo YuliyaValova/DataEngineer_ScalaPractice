@@ -18,6 +18,7 @@ Strongly recomended to use:
 | SBT | 1.6.2 |
 | JDK | 11 and higher |
 | Scala | 2.13.8 |
+| Git | 2.33.0 |
 
 ## How to run application
 >All next steps you can do from <b>cmd</b> or <b>PowerShell</b>.
