@@ -20,14 +20,18 @@ Strongly recomended to use:
 | Scala | 2.13.8 |
 
 ## How to run application
-
+>All next steps you can do from <b>cmd</b> or <b>PowerShell</b>.
 1. Clone the current version of the repository to your computer.
 ```sh
  git clone https://github.com/YuliyaValova/DataEngineer_ScalaPractice
 ```
-2. Go to your sbt-shell and write: 
+2. Write this command to start sbt.
 ```sh
-sbt run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
+sbt 
+```
+3. Go to your sbt-shell and write: 
+```sh
+run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
 ```
 >URL - Url for connection to DB2 on Cloud. <br>
 >DATABASE_NAME - Name of the database. <br>
