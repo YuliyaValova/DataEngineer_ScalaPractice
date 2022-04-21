@@ -25,8 +25,11 @@ case object LoadStarter{
     val connection = DB2Connector.getConnectionToDatabase(url, username, password)
     val generator:RecordsGenerator = new RecordsGenerator
     generator.generateTable(connection, tableName, rowsNumber)
-    val loader = new DataLoader
     DB2Connector.retrieveConnection(connection)
+
+    //You can use this to select rows count in table and drop it
+
+    //val loader = new DataLoader
     //println(loader.selectAll(connection, tableName))
     //loader.dropTable(connection, tableName)
   }
