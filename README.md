@@ -27,7 +27,7 @@ Strongly recomended to use:
 ```
 2. Go to your sbt-shell and write: 
 ```sh
-sbt run <jdbc:db2://URL/DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
+sbt run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
 ```
 >URL - Url for connection to DB2 on Cloud. <br>
 >DATABASE_NAME - Name of the database. <br>
