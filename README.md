@@ -25,11 +25,15 @@ Strongly recomended to use:
 ```sh
  git clone https://github.com/YuliyaValova/DataEngineer_ScalaPractice
 ```
-2. Write this command to start sbt.
+2. Go to the project folder.
+```sh
+cd DataEngineer_ScalaPractice
+```
+3. Write this command to start sbt.
 ```sh
 sbt 
 ```
-3. Go to your sbt-shell and write: 
+4. Go to your sbt-shell and write: 
 ```sh
 run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
 ```
