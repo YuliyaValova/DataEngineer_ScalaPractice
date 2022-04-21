@@ -49,13 +49,11 @@ Strongly recomended to use:
 
 ## Build
 >All next steps you can do from <b>cmd</b> or <b>PowerShell</b>.
-Clone the current version of the repository to your computer.
+1. Clone the current version of the repository to your computer.
 ```sh
  git clone https://github.com/YuliyaValova/DataEngineer_ScalaPractice
 ```
-
-### Using sbt
-Go to the project folder and write this commands consistently to start sbt, to reload and to package project into jar.
+2. Go to the project folder and write this commands consistently to start sbt, to reload and to package project into jar.
 ```sh
 sbt 
 ```
@@ -65,10 +63,6 @@ reload
 ```sh
 package
 ```
-
-### Using Java
-...
-
 ## Run
 ### Using sbt
 Use this command in sbt-shell, opened in your project folder.
