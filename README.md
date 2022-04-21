@@ -55,7 +55,7 @@ Clone the current version of the repository to your computer.
 ```
 
 ### Using sbt
-Go to the project folder and write this commands to start sbt, reload and package project into jar.
+Go to the project folder and write this commands consistently to start sbt, to reload and to package project into jar.
 ```sh
 sbt 
 ```
@@ -65,6 +65,9 @@ reload
 ```sh
 package
 ```
+
+### Using Java
+...
 
 ## Run
 ### Using sbt
@@ -84,13 +87,16 @@ run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <N
 <br>
 Command with your custom number of genereted rows:
 ```sh
-sbt run jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 15000
+run jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 15000
 ```
 <b> or </b>
 <br>
 Command with default number of genereted rows:
 ```sh
-sbt run jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 
+run jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 
 ```
+
+### Using java
+...
  
 
