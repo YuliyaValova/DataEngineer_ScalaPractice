@@ -24,10 +24,9 @@ case object LoadStarter{
     val password = conf(2)
     val tableName = conf(3)
     val rowsNumber = conf(4).toInt
-    println(url + " " +username  + " "  + password  + " " + tableName  + " " + rowsNumber)
     val connection = DB2Connector.getConnectionToDatabase(url, username, password)
-    //val generator:RecordsGenerator = new RecordsGenerator
-    //generator.generateTable(connection, tableName, rowsNumber)
+    val generator:RecordsGenerator = new RecordsGenerator
+    generator.generateTable(connection, tableName, rowsNumber)
     DB2Connector.retrieveConnection(connection)
 
     //You can use this to select rows count in table and drop it
@@ -45,15 +44,16 @@ case object LoadStarter{
       argSize match {
         case 5 => conf = args
         case 4 => {
-          conf = args
+          for(i<-0 until 4)
+            conf(i) = args(i)
           conf(4) = "20000"
         }
         case _ => {
           println("Invalid parameters number.")
           System.exit(1)
         }
-        conf(4).toInt
       }
+        conf(4).toInt
     } catch {
       case e:Exception => {
         println("Invalid rowNumber entered.")
