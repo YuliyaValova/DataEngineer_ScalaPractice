@@ -34,7 +34,7 @@ cd DataEngineer_ScalaPractice
 ```sh
 sbt 
 ```
-4. Go to your sbt-shell and write: 
+4. Write: 
 ```sh
 run jdbc:db2://<URL>/<DATABASE_NAME> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
 ```
