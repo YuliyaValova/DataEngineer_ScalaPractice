@@ -25,7 +25,10 @@ case object LoadStarter{
     val connection = DB2Connector.getConnectionToDatabase(url, username, password)
     val generator:RecordsGenerator = new RecordsGenerator
     generator.generateTable(connection, tableName, rowsNumber)
+    val loader = new DataLoader
     DB2Connector.retrieveConnection(connection)
+    //println(loader.selectAll(connection, tableName))
+    //loader.dropTable(connection, tableName)
   }
 
 
@@ -39,7 +42,7 @@ case object LoadStarter{
       args(4).toInt
     } catch {
       case e:Exception => {
-        println("Invalid parameters entered.")
+        println("Invalid rowNumber entered.")
         e.printStackTrace()
         System.exit(1)
       }
