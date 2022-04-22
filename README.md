@@ -105,6 +105,32 @@ Command with default number of genereted rows:
 run mysql jdbc:mysql://localhost:3306/myDb root 111 Test 
 ```
 ### Using java
-...
- 
+Use this in command line, opened in your project folder.
+```sh
+java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-library-2.13.8.jar;target\scala-2.13\dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter <DB_TYPE> <URL> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATED_ROWS>
+```
+- DB_TYPE - Type of the database to which load data. Now two options are possible: 
+   * "db2"
+   * "mysql"
+- URL - Url for connection to database.
+   * jdbc:db2://host:port/database_name (For "db2" database type)
+   * jdbc:mysql://host:port/database_name (For "mysql" database type)
+- USER_NAME - Username from credentials. <br>
+- YOUR_PASSWORD - Password from credentials. <br>
+- TABLE_NAME - The name under which the generated table will be saved in the database. <br>
+- NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table.
+<br>
+<b> Example for MySQL </b>
+<br>
+Command with your custom number of genereted rows:
+```sh
+java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-library-2.13.8.jar;target\scala-2.13\dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter mysql jdbc:mysql://localhost:3306/myDb root 111 Test 15000
+```
+<b> or </b>
+<br>
+Command with default number of genereted rows:
+```sh
+java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-library-2.13.8.jar;target\scala-2.13\dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter mysql jdbc:mysql://localhost:3306/myDb root 111 Test 
+```
+
 
