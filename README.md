@@ -75,8 +75,8 @@ run <DB_TYPE> <URL> <USER_NAME> <YOUR_PASSWORD> <TABLE_NAME> <NUMBER_OF_GENERATE
 - URL - Url for connection to database.
    * jdbc:db2://host:port/database_name (For "db2" database type)
    * jdbc:mysql://host:port/database_name (For "mysql" database type)
-- USER_NAME - Username from DB2 credentials. <br>
-- YOUR_PASSWORD - Password from DB2 credentials. <br>
+- USER_NAME - Username from credentials. <br>
+- YOUR_PASSWORD - Password from credentials. <br>
 - TABLE_NAME - The name under which the generated table will be saved in the database. <br>
 - NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table.
 <br>
