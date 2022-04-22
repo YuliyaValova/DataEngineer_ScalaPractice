@@ -26,7 +26,7 @@ case object Connector {
         }
         case "mysql" => {
           driverName = "com.mysql.cj.jdbc.Driver"
-          connectionUrl = url + "?user=" + username + "&password=" + password + "&useSSL=false"
+          connectionUrl = url + "?user=" + username + "&password=" + password
         }
         case _ => {
           println("Invalid database type.")
