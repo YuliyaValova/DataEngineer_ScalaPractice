@@ -120,6 +120,7 @@ java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-lib
 - TABLE_NAME - The name under which the generated table will be saved in the database. <br>
 - NUMBER_OF_GENERATED_ROWS (Optional, by default 20000) - Number of rows generated for the table.
 <br>
+
 <b> Example for MySQL </b>
 <br>
 Command with your custom number of genereted rows:
@@ -131,6 +132,18 @@ java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-lib
 Command with default number of genereted rows:
 ```sh
 java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-library-2.13.8.jar;target\scala-2.13\dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter mysql jdbc:mysql://localhost:3306/myDb root 111 Test 
+```
+<b> Example for DB2 </b>
+<br>
+Command with your custom number of genereted rows:
+```sh
+java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-library-2.13.8.jar;target\scala-2.13\dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter db2 jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 15000
+```
+<b> or </b>
+<br>
+Command with default number of genereted rows:
+```sh
+java -cp "lib\jcc-11.5.7.0.jar;lib\mysql-connector-java-8.0.27.jar;lib\scala-library-2.13.8.jar;target\scala-2.13\dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter db2 jdbc:db2://b1bc1839-6f45-4pd4-bef4-10cf081900bf.c1ogj3dd0tgtu0lade00.databases.appdomain.cloud:34305/bludb qlf38947 CG745Jpa7a930Jvb Test 
 ```
 
 
