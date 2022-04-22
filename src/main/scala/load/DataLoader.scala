@@ -7,8 +7,14 @@ import java.text.MessageFormat
 
 case class DataLoader() {
 
+  def loadRecords(tableName: String, connection: Connection, rows: String): Unit = {
+    val query = "insert into " + tableName + " values" + rows.substring(0, rows.length - 1) + ";"
+    val statement = connection.createStatement()
+    statement.execute(query)
+  }
+
   def addTableRecord(tableName: String, connection: Connection, row: TableRow): Boolean = {
-    val query = "insert into " + tableName + " values(" + row.toString + ");"
+    val query = "insert into " + tableName + " values( " + row.toString + ");"
     val statement = connection.createStatement()
     statement.execute(query)
   }
@@ -55,7 +61,7 @@ case class DataLoader() {
                   """.stripMargin
     val preparedStatement = connection.createStatement()
     val result: ResultSet = preparedStatement.executeQuery(MessageFormat.format(query, tableName))
-    while (result.next()){
+    while (result.next()) {
       println(result.getLong(1))
     }
   }

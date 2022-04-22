@@ -1,5 +1,5 @@
 package load
-import connection.DB2Connector
+import connection.Connector
 import generator.RecordsGenerator
 
 case object LoadStarter{
@@ -19,15 +19,16 @@ case object LoadStarter{
 
   def main(args: Array[String]): Unit = {
     checkArgs(args)
-    val url = conf(0)
-    val username = conf(1)
-    val password = conf(2)
-    val tableName = conf(3)
-    val rowsNumber = conf(4).toInt
-    val connection = DB2Connector.getConnectionToDatabase(url, username, password)
+    val dbType = conf(0)
+    val url = conf(1)
+    val username = conf(2)
+    val password = conf(3)
+    val tableName = conf(4)
+    val rowsNumber = conf(5).toInt
+    val connection = Connector.getConnectionToDatabase(dbType, url, username, password)
     val generator:RecordsGenerator = new RecordsGenerator
     generator.generateTable(connection, tableName, rowsNumber)
-    DB2Connector.retrieveConnection(connection)
+    Connector.retrieveConnection(connection)
 
     //You can use this to select rows count in table and drop it
 
@@ -42,18 +43,18 @@ case object LoadStarter{
     try {
       val argSize = args.size
       argSize match {
-        case 5 => conf = args
-        case 4 => {
-          for(i<-0 until 4)
+        case 6 => conf = args
+        case 5 => {
+          for(i<-0 until 5)
             conf(i) = args(i)
-          conf(4) = "20000"
+          conf(5) = "20000"
         }
         case _ => {
           println("Invalid parameters number.")
           System.exit(1)
         }
       }
-        conf(4).toInt
+        conf(5).toInt
     } catch {
       case e:Exception => {
         println("Invalid rowNumber entered.")

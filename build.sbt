@@ -8,5 +8,6 @@ lazy val root = (project in file("."))
   )
 
 libraryDependencies ++= Seq(
-  "com.ibm.db2" % "jcc" % "11.5.7.0"
+  "com.ibm.db2" % "jcc" % "11.5.7.0",
+  "mysql" % "mysql-connector-java" % "8.0.27"
 )

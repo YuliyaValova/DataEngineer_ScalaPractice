@@ -73,7 +73,10 @@ case class RecordsGenerator() {
    * @param rowNumber  - number of generated records for the table
    */
   def generateTable(connection: Connection, tableName:String, rowsNumber:Int): Unit = {
+    var query = ""
+    var batchSize = 0
     var currentRowNumber = 0
+
     try {
       loader.createTable(connection, tableName)
     } catch {
@@ -83,7 +86,13 @@ case class RecordsGenerator() {
         System.exit(1)
       }
     }
+
     while (currentRowNumber < rowsNumber) {
+      if(batchSize >= 1000){
+        loader.loadRecords(tableName,connection, query)
+        batchSize = 0
+        query = ""
+      }
       val recordsCount = generateCount()
       val productId = generateId()
       val productGroup = generateGroup()
@@ -95,7 +104,7 @@ case class RecordsGenerator() {
         currentYearPosition += 1
       }
       try {
-        productRows.foreach(row => loader.addTableRecord(tableName, connection, row))
+        productRows.foreach(row => query = query + "(" + row.toString + "),")
       } catch {
         case e: Exception => {
           println("ERROR: Error adding entry. Failed row number: " + currentRowNumber)
@@ -104,6 +113,8 @@ case class RecordsGenerator() {
         }
       }
       currentRowNumber += recordsCount
+      batchSize += recordsCount
     }
+    loader.loadRecords(tableName, connection, query)
   }
 }
