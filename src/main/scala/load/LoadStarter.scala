@@ -5,7 +5,7 @@ import generator.RecordsGenerator
 case object LoadStarter{
 
 
-  var conf = new Array[String](5)
+  var conf = new Array[String](6)
 
   /**
    * Entry point of the program. This app creates a table in DB2 on Cloud with 20k sample records.
