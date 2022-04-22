@@ -53,15 +53,14 @@ Strongly recomended to use:
 ```sh
  git clone https://github.com/YuliyaValova/DataEngineer_ScalaPractice
 ```
-2. Go to the project folder and write this commands consistently to start sbt, to reload and to package project into jar.
+2. Go to the project folder and write this commands:
+ * To reload project using sbt.
 ```sh
-sbt 
+sbt reload
 ```
+  * To package project into jar.
 ```sh
-reload
-```
-```sh
-package
+sbt package
 ```
 ## Run
 ### Using sbt
