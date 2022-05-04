@@ -1,0 +1,21 @@
+#Первый вариант:
+FROM java:8
+COPY ./DataEngineer_ScalaPractice/lib ./app
+COPY ./DataEngineer_ScalaPractice/target/scala-2.13/dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar ./app
+WORKDIR app
+-----------------
+Запуск:
+docker run image_scala7 \
+java -cp \
+"jcc-11.5.7.0.jar:mysql-connector-java-8.0.27.jar:scala-library-2.13.8.jar:dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" \
+load.LoadStarter ...(params)
+
+------------------
+#Второй вариант:
+FROM java:8
+COPY ./DataEngineer_ScalaPractice/lib ./app
+COPY ./DataEngineer_ScalaPractice/target/scala-2.13/dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar ./app
+WORKDIR app
+CMD java -cp "jcc-11.5.7.0.jar:mysql-connector-java-8.0.27.jar:scala-library-2.13.8.jar:dataengineer_scalapractice_2.13-0.1.0-SNAPSHOT.jar" load.LoadStarter
+------------------
+Запуск: docker run image_scala7  !!!Не знаю пока, как передать креды!!!
