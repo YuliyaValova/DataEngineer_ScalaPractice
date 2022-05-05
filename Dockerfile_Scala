@@ -5,4 +5,5 @@ COPY ./DataEngineer_ScalaPractice/target/scala-2.13/dataengineer_scalapractice_2
 WORKDIR app
 -----------------
 Запуск:
-docker run scala2 java -cp "./*" load.LoadStarter ...(params)
+docker build -t scala .
+docker run scala java -cp "./*" load.LoadStarter ...(params)
