@@ -11,11 +11,11 @@
 	```
 	
 # Example for docker run (for DB2 and COS)
-	- To build image:
+- To build image:
 	```sh 
 	docker build -t scala .
 	```
-	- To run the app:
+- To run the app:
 	```sh
 	docker run scala java -cp "./*" load.LoadStarter db2 jdbc:db2://.../bludb username password TEST
 	```
