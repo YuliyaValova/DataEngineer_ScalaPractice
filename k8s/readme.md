@@ -1,4 +1,4 @@
-To start a job inside the pod(deployment) you need:
+# To start a job inside the pod(deployment) you need:
 1) Download a scala.yaml file.
 2) Replace <YOUR_IMAGE_NAME> with your image name.                  
 3) Start your k8s, e.g. if you use Minikube:
@@ -20,5 +20,5 @@ To start a job inside the pod(deployment) you need:
 	```
 	
 - POD_NAME - Name of the created pod, that you look at step 5.
-- PARAMS - Parameters for connection to source, table name, etc. (Look here[https://github.com/YuliyaValova/DataEngineer_ScalaPractice/blob/dev/README.md])
+- PARAMS - Parameters for connection to source, table name, etc. (Look [here](https://github.com/YuliyaValova/DataEngineer_ScalaPractice/blob/dev/README.md))
 	
