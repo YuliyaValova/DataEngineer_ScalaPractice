@@ -37,7 +37,7 @@ spec:
             name: scala-secrets
             key: rows.number    
     imagePullPolicy: IfNotPresent 
-    image:  lulkaval/scala_fat
+    image:  <YOUR_IMAGE_NAME>
     command: ["/bin/sh", "-c"]
     args:
     - java -cp DataEngineer_ScalaPractice-assembly-0.1.0-SNAPSHOT.jar load.LoadStarter $db_type $url $user_name $user_password $table_name $rows_number
