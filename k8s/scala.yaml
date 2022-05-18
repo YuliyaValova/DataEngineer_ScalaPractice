@@ -1,21 +1,54 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: scala-deployment-4
+  name: scala
 spec:
-  selector:
-    matchLabels:
-      app: scala
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: scala
-    spec:
-      containers:
-      - name: scala
-        image: <IMAGE_NAME>
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        command: ["/bin/sh", "-ec", "sleep 1000"]  
+  containers:
+  - name: scala    
+    env:
+    - name: db_type
+      valueFrom:
+        secretKeyRef:
+            name: scala-secrets
+            key: db.type
+    - name: url
+      valueFrom:
+        secretKeyRef:
+            name: scala-secrets
+            key: url
+    - name: user_name
+      valueFrom:
+        secretKeyRef:
+            name: scala-secrets
+            key: user.name
+    - name: user_password
+      valueFrom:
+        secretKeyRef:
+            name: scala-secrets
+            key: user.password
+    - name: table_name
+      valueFrom:
+        secretKeyRef:
+            name: scala-secrets
+            key: table.name
+    - name: rows_number
+      valueFrom:
+        secretKeyRef:
+            name: scala-secrets
+            key: rows.number    
+    imagePullPolicy: IfNotPresent 
+    image:  lulkaval/scala_fat
+    command: ["/bin/sh", "-c"]
+    args:
+    - java -cp DataEngineer_ScalaPractice-assembly-0.1.0-SNAPSHOT.jar load.LoadStarter $db_type $url $user_name $user_password $table_name $rows_number
+    ports:
+    - containerPort: 80
+      protocol: TCP
+  restartPolicy: Never
+    
+
+
+
+
+
+
